@@ -1,0 +1,36 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://loans.services" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://loans.services" targetNamespace="http://loans.services">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+            <xsd:import namespace="http://loans.services" schemaLocation="loans.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="viewAllLoansRequest">
+        <wsdl:part element="tns:viewAllLoansRequest" name="viewAllLoansRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="viewAllLoansResponse">
+        <wsdl:part element="tns:viewAllLoansResponse" name="viewAllLoansResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="LoansPort">
+        <wsdl:operation name="viewAllLoans">
+            <wsdl:input message="tns:viewAllLoansRequest" name="viewAllLoansRequest"> </wsdl:input>
+            <wsdl:output message="tns:viewAllLoansResponse" name="viewAllLoansResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="LoansPortSoap11" type="tns:LoansPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="viewAllLoans">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="viewAllLoansRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="viewAllLoansResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="LoansPortService">
+        <wsdl:port binding="tns:LoansPortSoap11" name="LoansPortSoap11">
+            <soap:address location="http://localhost:8082/loansrepo"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
